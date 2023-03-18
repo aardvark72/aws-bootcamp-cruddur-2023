@@ -37,7 +37,7 @@ class HomeActivities:
           json = cur.fetchone()
       return json[0]
       return results
-      
+
       results = [{
         'uuid': '68f126b0-1ceb-4a33-88be-d90fa7109eee',
         'handle':  'Andrew Brown',
