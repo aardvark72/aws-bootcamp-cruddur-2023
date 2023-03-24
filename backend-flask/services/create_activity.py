@@ -62,6 +62,7 @@ class CreateActivity:
     return db.query_object_json(sql,{
       'uuid': uuid
     })
+
     
 
      
