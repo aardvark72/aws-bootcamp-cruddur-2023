@@ -1,10 +1,14 @@
-#! /usr/bin/bash
-
-CYAN='\033[1;36m'
-NO_COLOR='\033[0m'
-LABEL="rds-update-sg-rule"
-printf "${CYAN}==== ${LABEL}${NO_COLOR}\n"
-
-aws ec2 modify-security-group-rules \
-    --group-id $DB_SG_ID \
-    --security-group-rules "SecurityGroupRuleId=$DB_SG_RULE_ID,SecurityGroupRule={Description=GITPOD,IpProtocol=tcp,FromPort=5432,ToPort=5432,CidrIpv4=$GITPOD_IP/32}"
+INSERT INTO public.activities (
+  user_uuid,
+  message,
+  expires_at
+)
+VALUES (
+  (SELECT uuid 
+    FROM public.users 
+    WHERE users.handle = %(handle)s
+    LIMIT 1
+  ),
+  %(message)s,
+  %(expires_at)s
+) RETURNING uuid;

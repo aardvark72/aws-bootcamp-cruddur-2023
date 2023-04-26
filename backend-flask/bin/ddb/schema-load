@@ -67,5 +67,3 @@ response = ddb.create_table(
 )
 
 print(response)
-
-print(response)
